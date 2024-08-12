@@ -12,15 +12,15 @@ app.use(express.json());
 
 // Middleware to handle CORS Policy
 // Option 1: Allow All Origins with Default of cors(*)
-// app.use(cors()) // Empty parentheses has a default value of a star which accepts everything
+app.use(cors()) // Empty parentheses has a default value of a star which accepts everything
 // Option 2: Allow Custom Origins
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'],
-    })
-);
+// app.use(
+//    cors({
+//        origin: 'http://localhost:3000',
+//        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//        allowedHeaders: ['Content-Type'],
+//    })
+// );
 
 // () => {} is a callback function that receives request and response.
 app.get('/', (request, response) => {
