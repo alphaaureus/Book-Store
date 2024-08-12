@@ -1,0 +1,5 @@
+CORS Policy (Cross-Origin Ressource Sharing)
+
+Security mechanism in the browsers that restricts the ability of a webpage to access some resources.
+
+Browser sends request to server that checks origins, methods and headers to determine if it accepts or denies the request.
