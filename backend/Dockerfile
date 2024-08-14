@@ -1,7 +1,7 @@
-FROM node
+FROM node:18-alpine
 WORKDIR /backend
-COPY . .
-RUN rm -r node_modules
+COPY package*.json ./
 RUN npm install
+COPY . .
 EXPOSE 5555
 ENTRYPOINT ["npm", "start"]
