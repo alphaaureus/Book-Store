@@ -20,3 +20,9 @@ Created Following the Bookstore Tutorial from freeCodeCamp.
 
 # 6. UI Styling
 - Tailwind: Utility-first CSS framework for quickly styling the UI with responsive design.
+
+Docker:
+To use: ```docker-compose up --build -d```
+Go to: http://localhost:3000/
+When done: ```docker-compose down```
+
