@@ -18,8 +18,10 @@ const ShowBook = () => {
 			setLoading(false);
 		})
 		.catch((error) => {
-			console.log(error);
 			setLoading(false);
+			alert('An error happened when showing this book.')
+			console.log(error);
+			
 		})
 	}, [])
 
