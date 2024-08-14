@@ -3,27 +3,29 @@ import axios from 'axios';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const EditBook = () => {
-		const [ title, setTitle ] = useState('');
-		const [ author, setAuthor ] = useState('');
-		const [ publishYear, setPublishYear ] = useState('');
-		const [ loading, setLoading ] = useState(false);
-		const navigate = useNavigate();
+	const [ title, setTitle ] = useState('');
+	const [ author, setAuthor ] = useState('');
+	const [ publishYear, setPublishYear ] = useState('');
+	const [ loading, setLoading ] = useState(false);
+	const navigate = useNavigate();
 	const {id} = useParams();
+	const {enqueueSnackbar } = useSnackbar();
 
 	useEffect(() => {
 		setLoading(true);
 		axios.get(`http://localhost:5555/books/${id}`)
 		.then((response) => {
-		setAuthor(response.data.author);
-		setTitle(response.data.title);
-		setPublishYear(response.data.publishYear);
-		setLoading(false);  
+			setAuthor(response.data.author);
+			setTitle(response.data.title);
+			setPublishYear(response.data.publishYear);
+			setLoading(false);  
 		})
 		.catch((error) => {
 			setLoading(false);
-			alert(`An error happened when editing this book.`)
+			alert('An error happened when editing this book.')
 			console.log(error);
 		});
 	}, [])
@@ -39,11 +41,12 @@ const EditBook = () => {
 			.put(`http://localhost:5555/books/${id}`, data)
 			.then(() => {
 				setLoading(false);
+				enqueueSnackbar('Book edited successfully!', { variant: 'success' });
 				navigate('/');
 			})
 			.catch((error) => {
 				setLoading(false);
-				alert('An error happened when editing this book.')
+				enqueueSnackbar('An error happened when editing this book.', { variant: 'error' });
 				console.log(error);
 			})
 	};
